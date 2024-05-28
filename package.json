@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json.schemastore.org/package",
+  "name": "is-bun-module",
+  "author": "SunsetTechuila <techuila.sunset@gmail.com>",
+  "description": "Is this specifier a Bun core module or supported Node one?",
+  "version": "1.0.0",
+  "license": "MIT",
+  "files": [
+    "dist/**/*"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "homepage": "https://github.com/SunsetTechuila/is-bun-module",
+  "repository": "github:SunsetTechuila/is-bun-module",
+  "bugs": {
+    "url": "https://github.com/SunsetTechuila/is-bun-module/issues"
+  },
+  "keywords": [
+    "core",
+    "modules",
+    "module",
+    "node",
+    "dependencies",
+    "bun"
+  ],
+  "scripts": {
+    "build": "bun exec 'rm -rf dist' && bun build:code && bun build:types",
+    "build:code": "bun build:code:base --format=esm --out-extension:.js=.mjs && bun build:code:base --format=cjs",
+    "build:code:base": "bun --bun esbuild src/index.ts --target=es6 --bundle --minify --outdir=dist",
+    "build:types": "bun --bun tsc --emitDeclarationOnly --project tsconfig.build.json",
+    "check-all": "bun test && bun lint && bun type-check && bun format:check",
+    "check-all:fix": "bun lint:fix && bun format",
+    "test": "bun test",
+    "format": "bun format:base --write",
+    "format:check": "bun format:base --check",
+    "format:base": "bun --bun prettier . --cache",
+    "lint": "bun --bun eslint . --cache",
+    "lint:fix": "bun lint --fix",
+    "type-check": "bun --bun tsc --noEmit",
+    "clean-pakage-json": "npm pkg delete $schema scripts devDependencies"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@types/bun": "^1.1.3",
+    "@types/semver": "^7.5.8",
+    "@typescript-eslint/eslint-plugin": "^7.11.0",
+    "@typescript-eslint/parser": "^7.11.0",
+    "esbuild": "^0.21.4",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^9.0.11",
+    "prettier": "^3.3.0",
+    "semantic-release": "^24.0.0",
+    "semver": "^7.6.2",
+    "typescript": "^5.4.5"
+  }
+}

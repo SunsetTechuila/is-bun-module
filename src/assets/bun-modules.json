@@ -1,0 +1,7 @@
+{
+  "bun": true,
+  "bun:ffi": true,
+  "bun:jsc": true,
+  "bun:sqlite": true,
+  "bun:test": true
+}

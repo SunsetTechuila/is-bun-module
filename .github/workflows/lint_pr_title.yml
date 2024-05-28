@@ -1,0 +1,16 @@
+name: Lint Pull Request Title
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - edited
+      - synchronize
+
+jobs:
+  lint_title:
+    name: Lint title
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run linting action
+        uses: amannn/action-semantic-pull-request@v5
