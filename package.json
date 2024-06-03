@@ -3,7 +3,7 @@
   "name": "is-bun-module",
   "author": "SunsetTechuila <techuila.sunset@gmail.com>",
   "description": "Is this specifier a Bun core module or supported Node one?",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "files": [
     "dist/**/*"
