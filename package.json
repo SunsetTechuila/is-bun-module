@@ -16,7 +16,8 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.js",
       "types": "./dist/index.d.ts"
-    }
+    },
+    "./package.json": "./package.json"
   },
   "homepage": "https://github.com/SunsetTechuila/is-bun-module",
   "repository": "github:SunsetTechuila/is-bun-module",
