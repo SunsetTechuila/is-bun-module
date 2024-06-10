@@ -38,13 +38,11 @@
     "build:code:base": "bun --bun esbuild src/index.ts --target=es6 --bundle --minify --outdir=dist",
     "build:types": "bun --bun tsc --emitDeclarationOnly --project tsconfig.build.json",
     "check-all": "bun test && bun lint && bun type-check && bun format:check",
-    "check-all:fix": "bun lint:fix && bun format",
     "test": "bun test",
     "format": "bun format:base --write",
     "format:check": "bun format:base --check",
     "format:base": "bun --bun prettier . --cache",
     "lint": "bun --bun eslint . --cache",
-    "lint:fix": "bun lint --fix",
     "type-check": "bun --bun tsc --noEmit",
     "clean-pakage-json": "npm pkg delete $schema scripts devDependencies"
   },
