@@ -1,5 +1,4 @@
 {
-  "$schema": "https://json.schemastore.org/package",
   "name": "is-bun-module",
   "author": "SunsetTechuila <techuila.sunset@gmail.com>",
   "description": "Is this specifier a Bun core module or supported Node one?",
@@ -44,7 +43,7 @@
     "format:base": "bun --bun prettier . --cache",
     "lint": "bun --bun eslint . --cache",
     "type-check": "bun --bun tsc --noEmit",
-    "clean-pakage-json": "npm pkg delete $schema scripts devDependencies"
+    "clean-pakage-json": "npm pkg delete scripts devDependencies"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",
