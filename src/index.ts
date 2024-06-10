@@ -32,7 +32,7 @@ function checkModule(moduleName: string, modules: CoreModules, bunVersion?: Vers
     ? bunVersion === "latest"
       ? ("999.999.999" satisfies SemVerStringified)
       : bunVersion
-    : process?.versions?.bun;
+    : typeof process !== "undefined" && process.versions.bun;
   if (!targetBunVersion) throw "Bun version is not provided and cannot be detected";
 
   if (semver.lt(targetBunVersion, MINIMUM_BUN_VERSION)) {
