@@ -7,7 +7,7 @@
     [
       "@semantic-release/github",
       {
-        "assets": [{ "path": "*.tgz", "label": "Package tarball" }]
+        "assets": { "path": "*.tgz" }
       }
     ],
     "@semantic-release/npm"
