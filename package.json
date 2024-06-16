@@ -46,6 +46,9 @@
     "type-check": "bun --bun tsc",
     "clean-pakage-json": "npm pkg delete scripts devDependencies"
   },
+  "dependencies": {
+    "semver": "^7.6.2"
+  },
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
@@ -58,7 +61,6 @@
     "husky": "^9.0.11",
     "prettier": "^3.3.0",
     "semantic-release": "^24.0.0",
-    "semver": "^7.6.2",
     "tsup": "SunsetTechuila/tsup#dist",
     "typescript": "^5.4.5"
   }
