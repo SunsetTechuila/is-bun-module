@@ -7,14 +7,18 @@
   "files": [
     "dist/**/*"
   ],
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.mjs",
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "import": {
+        "default": "./dist/esm/index.mjs",
+        "types": "./dist/esm/index.d.mts"
+      },
+      "require": {
+        "default": "./dist/cjs/index.js",
+        "types": "./dist/cjs/index.d.ts"
+      }
     },
     "./package.json": "./package.json"
   },
@@ -32,17 +36,14 @@
     "bun"
   ],
   "scripts": {
-    "build": "bun exec 'rm -rf dist' && bun build:code && bun build:types",
-    "build:code": "bun build:code:base --format=esm --out-extension:.js=.mjs && bun build:code:base --format=cjs",
-    "build:code:base": "bun --bun esbuild src/index.ts --target=es6 --bundle --minify --outdir=dist",
-    "build:types": "bun --bun tsc --emitDeclarationOnly --project tsconfig.build.json",
+    "build": "bun --bun tsup",
     "check-all": "bun test && bun lint && bun type-check && bun format:check",
     "test": "bun test",
     "format": "bun format:base --write",
     "format:check": "bun format:base --check",
     "format:base": "bun --bun prettier . --cache",
     "lint": "bun --bun eslint . --cache",
-    "type-check": "bun --bun tsc --noEmit",
+    "type-check": "bun --bun tsc",
     "clean-pakage-json": "npm pkg delete scripts devDependencies"
   },
   "devDependencies": {
@@ -52,13 +53,13 @@
     "@types/semver": "^7.5.8",
     "@typescript-eslint/eslint-plugin": "^7.11.0",
     "@typescript-eslint/parser": "^7.11.0",
-    "esbuild": "^0.21.4",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "husky": "^9.0.11",
     "prettier": "^3.3.0",
     "semantic-release": "^24.0.0",
     "semver": "^7.6.2",
+    "tsup": "SunsetTechuila/tsup#dist",
     "typescript": "^5.4.5"
   }
 }
