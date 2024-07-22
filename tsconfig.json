@@ -21,7 +21,8 @@
 
     "baseUrl": ".",
     "paths": {
-      "@assets/*": ["src/assets/*"]
+      "@assets/*": ["src/assets/*"],
+      "@self": ["."]
     }
   },
   "exclude": ["node_modules", "dist"]

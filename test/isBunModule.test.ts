@@ -1,6 +1,6 @@
 import { test, expect, describe } from "bun:test";
 
-import { isBunModule } from "src";
+import { isBunModule } from "@self";
 
 describe("Bun modules checking", () => {
   test("Return true for bun", () => {

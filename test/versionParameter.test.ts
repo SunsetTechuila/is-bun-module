@@ -1,6 +1,6 @@
 import { test, expect, describe } from "bun:test";
 
-import { isBunModule, isSupportedNodeModule } from "src";
+import { isBunModule, isSupportedNodeModule } from "@self";
 
 describe("Version parameter parsing", () => {
   test("Throw if lower than minimum", () => {

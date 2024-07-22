@@ -1,6 +1,6 @@
 import { test, expect, describe } from "bun:test";
 
-import { isSupportedNodeModule } from "src";
+import { isSupportedNodeModule } from "@self";
 
 describe("Supported Node modules checking", () => {
   test("Return true for supported node", () => {

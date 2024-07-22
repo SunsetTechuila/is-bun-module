@@ -37,8 +37,8 @@
   ],
   "scripts": {
     "build": "bun --bun tsup",
-    "check-all": "bun test && bun lint && bun type-check && bun format:check",
-    "test": "bun test",
+    "check-all": "bun run test && bun lint && bun type-check && bun format:check",
+    "test": "bun run build && bun test",
     "format": "bun format:base --write",
     "format:check": "bun format:base --check",
     "format:base": "bun --bun prettier . --cache",
