@@ -44,7 +44,8 @@
     "format:base": "bun --bun prettier . --cache",
     "lint": "bun --bun eslint . --cache",
     "type-check": "bun --bun tsc",
-    "clean-pakage-json": "npm pkg delete scripts devDependencies"
+    "clean-pakage-json": "npm pkg delete scripts devDependencies",
+    "prepare": "bun --bun husky"
   },
   "dependencies": {
     "semver": "^7.6.3"
