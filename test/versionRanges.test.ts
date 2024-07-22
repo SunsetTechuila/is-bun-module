@@ -20,7 +20,12 @@ describe("Version ranges parsing", () => {
 });
 
 function isValidRange(range: unknown): boolean {
-  if (typeof range === "boolean") return true;
-  if (typeof range !== "string") return false;
-  return Boolean(semver.validRange(range));
+  switch (typeof range) {
+    case "boolean":
+      return true;
+    case "string":
+      return Boolean(semver.validRange(range));
+    default:
+      return false;
+  }
 }
