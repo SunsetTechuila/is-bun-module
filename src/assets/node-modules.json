@@ -3,6 +3,7 @@
   "async_hooks": true,
   "buffer": true,
   "child_process": true,
+  "cluster": ">= 1.1.25",
   "console": true,
   "crypto": true,
   "dgram": ">= 1.1.6",
