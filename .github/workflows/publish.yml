@@ -34,9 +34,6 @@ jobs:
       - name: Build package
         run: bun run build
 
-      - name: Clean up package.json
-        run: bun run clean-pakage-json
-
       - name: Publish package
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
