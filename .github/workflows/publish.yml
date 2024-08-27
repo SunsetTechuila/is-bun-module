@@ -18,15 +18,15 @@ jobs:
       issues: write
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@9a9194f87191a7e9055e3e9b95b8cfb13023bb08
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@26961cf329f22f6837d5f54c3efd76b480300ace
         with:
           node-version: lts/*
 
       - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
+        uses: oven-sh/setup-bun@b9d34de66d2a7faee36a22446c434b7c959e48d2
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
