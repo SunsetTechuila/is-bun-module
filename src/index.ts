@@ -33,10 +33,10 @@ function checkModule(moduleName: string, modules: CoreModules, bunVersion?: Vers
       ? ("999.999.999" satisfies SemVerStringified)
       : bunVersion
     : typeof process !== "undefined" && process.versions.bun;
-  if (!targetBunVersion) throw "Bun version is not provided and cannot be detected";
+  if (!targetBunVersion) throw new Error("Bun version is not provided and cannot be detected");
 
   if (semver.lt(targetBunVersion, MINIMUM_BUN_VERSION)) {
-    throw `Bun version must be at least ${MINIMUM_BUN_VERSION}`;
+    throw new RangeError(`Bun version must be at least ${MINIMUM_BUN_VERSION}`);
   }
 
   const versionRange = modules[moduleName as keyof typeof modules];
@@ -46,7 +46,6 @@ function checkModule(moduleName: string, modules: CoreModules, bunVersion?: Vers
 }
 
 function isVersion(input: unknown): input is Version {
-  return (
-    typeof input === "string" && (input === "latest" || Boolean(input.match(/^(?:\d+\.){2}\d+$/)))
-  );
+  return typeof input === "string" && (input === "latest" || semverRegex.test(input));
 }
+const semverRegex = /^(?:\d+\.){2}\d+$/;
