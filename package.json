@@ -37,7 +37,7 @@
   ],
   "scripts": {
     "build": "bun --bun tsup",
-    "check-all": "bun run test && bun lint && bun type-check && bun format:check",
+    "check-all": "concurrently --kill-others=failure 'bun run test' 'bun lint' 'bun type-check' 'bun format:check'",
     "test": "bun run build && bun test",
     "format": "bun format:base --write",
     "format:check": "bun format:base --check",
@@ -57,6 +57,7 @@
     "@types/bun": "^1.1.8",
     "@types/eslint__js": "^8.42.3",
     "@types/semver": "^7.5.8",
+    "concurrently": "^9.0.0",
     "eslint": "^9.10.0",
     "eslint-config-prettier": "^9.1.0",
     "husky": "^9.1.5",
