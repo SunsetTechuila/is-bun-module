@@ -44,7 +44,7 @@
     "format:base": "bun --bun prettier . --cache",
     "lint": "bun --bun eslint . --cache",
     "type-check": "bun --bun tsc",
-    "prepare": "bun --bun husky"
+    "postinstall": "bun --bun husky"
   },
   "dependencies": {
     "semver": "^7.6.3"
