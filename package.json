@@ -37,7 +37,7 @@
   ],
   "scripts": {
     "build": "bun --bun tsup",
-    "check-all": "concurrently --kill-others=failure 'bun run test' 'bun lint' 'bun type-check' 'bun format:check'",
+    "check-all": "bun --bun concurrently --kill-others=failure 'bun run test' 'bun lint' 'bun type-check' 'bun format:check'",
     "test": "bun run build && bun test",
     "format": "bun format:base --write",
     "format:check": "bun format:base --check",
