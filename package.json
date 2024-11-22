@@ -12,12 +12,12 @@
   "exports": {
     ".": {
       "import": {
-        "default": "./dist/esm/index.mjs",
-        "types": "./dist/esm/index.d.mts"
+        "types": "./dist/esm/index.d.mts",
+        "default": "./dist/esm/index.mjs"
       },
       "require": {
-        "default": "./dist/cjs/index.js",
-        "types": "./dist/cjs/index.d.ts"
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
       }
     },
     "./package.json": "./package.json"
