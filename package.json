@@ -23,7 +23,10 @@
     "./package.json": "./package.json"
   },
   "homepage": "https://github.com/SunsetTechuila/is-bun-module",
-  "repository": "github:SunsetTechuila/is-bun-module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SunsetTechuila/is-bun-module.git"
+  },
   "bugs": {
     "url": "https://github.com/SunsetTechuila/is-bun-module/issues"
   },
