@@ -1,0 +1,29 @@
+name: Build Package
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  build:
+    name: Build the package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@9a9194f87191a7e9055e3e9b95b8cfb13023bb08
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@b9d34de66d2a7faee36a22446c434b7c959e48d2
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build package
+        run: bun run build
+
+      - name: Upload package build
+        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882
+        with:
+          name: dist@${{ github.sha }}
+          path: dist
+          overwrite: true
