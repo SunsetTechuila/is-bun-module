@@ -48,7 +48,7 @@
     "lint": "bun --bun eslint . --cache",
     "type-check": "bun --bun tsc",
     "publish": "bun --bun semantic-release",
-    "postinstall": "bun --bun husky"
+    "prepare": "bun --bun husky"
   },
   "dependencies": {
     "semver": "^7.6.3"
