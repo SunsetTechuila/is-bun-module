@@ -1,4 +1,6 @@
-import semver from "semver";
+import valid from "semver/functions/valid";
+import satisfies from "semver/functions/satisfies";
+import lt from "semver/functions/lt";
 
 import bunModules from "@assets/bun-modules.json";
 import nodeModules from "@assets/node-modules.json";
@@ -39,17 +41,17 @@ function checkModule(moduleName: string, modules: CoreModules, bunVersion?: Vers
     targetBunVersion = process.versions.bun as SemVerStringified;
   }
 
-  if (semver.lt(targetBunVersion, MINIMUM_BUN_VERSION)) {
+  if (lt(targetBunVersion, MINIMUM_BUN_VERSION)) {
     throw new RangeError(`Bun version must be at least ${MINIMUM_BUN_VERSION}`);
   }
 
   const versionRange = modules[moduleName as keyof typeof modules];
   if (typeof versionRange === "boolean") return versionRange;
-  return semver.satisfies(targetBunVersion, versionRange);
+  return satisfies(targetBunVersion, versionRange);
 }
 
 function toSemVerStringified(input: unknown): SemVerStringified | undefined {
   if (typeof input !== "string") return;
   if (input === "latest") return "999.999.999";
-  if (semver.valid(input)) return input as SemVerBaseStringified;
+  if (valid(input)) return input as SemVerBaseStringified;
 }
