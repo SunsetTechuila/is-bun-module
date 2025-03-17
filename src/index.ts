@@ -30,7 +30,7 @@ function checkModule(moduleName: string, modules: CoreModules, bunVersion?: Vers
 
   let targetBunVersion: Version | undefined;
   if (bunVersion) {
-    targetBunVersion = toSemVerStringified(bunVersion);
+    targetBunVersion = toSemVerStringified(bunVersion ?? "latest");
     if (!targetBunVersion) {
       throw new TypeError("Bun version must be a string like 1.0.0 or 'latest'");
     }
