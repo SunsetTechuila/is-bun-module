@@ -52,7 +52,7 @@
     "prepare": "bun husky"
   },
   "dependencies": {
-    "semver": "^7.6.3"
+    "semver": "^7.7.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.0",
