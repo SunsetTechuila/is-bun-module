@@ -1,6 +1,6 @@
 remote_branch="$(git rev-parse --abbrev-ref --symbolic-full-name '@{u}' 2>/dev/null || echo "no_upstream")"
 
 if [[ "$remote_branch" == "origin/master" ]]; then
-  bunx --bun commitlint --from="$remote_branch" --to=HEAD
+  bun commitlint --from="$remote_branch" --to=HEAD
   bun run check-all
 fi

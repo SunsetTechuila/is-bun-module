@@ -39,17 +39,17 @@
     "bun"
   ],
   "scripts": {
-    "build": "bun --bun tsup",
-    "check-all": "bun --bun concurrently --kill-others=failure 'bun run test' 'bun lint' 'bun type-check' 'bun format:check'",
+    "build": "bun tsup",
+    "check-all": "bun concurrently --kill-others=failure 'bun run test' 'bun lint' 'bun type-check' 'bun format:check'",
     "precheck-all": "bun run build",
     "test": "bun test",
     "format": "bun format:base --write",
     "format:check": "bun format:base --check",
-    "format:base": "bun --bun prettier . --cache",
-    "lint": "bun --bun eslint . --cache",
-    "type-check": "bun --bun tsc",
-    "publish": "bun --bun semantic-release",
-    "prepare": "bun --bun husky"
+    "format:base": "bun prettier . --cache",
+    "lint": "bun eslint . --cache",
+    "type-check": "bun tsc",
+    "publish": "bun semantic-release",
+    "prepare": "bun husky"
   },
   "dependencies": {
     "semver": "^7.6.3"
