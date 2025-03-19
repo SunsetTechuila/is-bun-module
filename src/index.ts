@@ -20,6 +20,10 @@ export function isSupportedNodeModule(moduleName: string, bunVersion?: Version):
   return checkModule(moduleName.replace(/^node:/, ""), nodeModules, bunVersion);
 }
 
+export function isBunBuiltin(moduleName: string, bunVersion?: Version): boolean {
+  return isBunModule(moduleName, bunVersion) || isSupportedNodeModule(moduleName, bunVersion);
+}
+
 type BunModules = typeof bunModules;
 type SupportedNodeModules = typeof nodeModules;
 type CoreModules = BunModules | SupportedNodeModules;
