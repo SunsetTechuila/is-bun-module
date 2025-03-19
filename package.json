@@ -55,21 +55,20 @@
     "semver": "^7.6.3"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.6.0",
-    "@commitlint/config-conventional": "^19.6.0",
-    "@eslint/js": "^9.15.0",
-    "@semantic-release/exec": "^6.0.3",
-    "@types/bun": "^1.1.14",
-    "@types/eslint__js": "^8.42.3",
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
+    "@eslint/js": "^9.22.0",
+    "@semantic-release/exec": "^7.0.3",
+    "@types/bun": "^1.2.5",
     "@types/semver": "^7.5.8",
-    "concurrently": "^9.1.0",
-    "eslint": "^9.15.0",
-    "eslint-config-prettier": "^9.1.0",
+    "concurrently": "^9.1.2",
+    "eslint": "^9.22.0",
+    "eslint-config-prettier": "^10.1.1",
     "husky": "^9.1.7",
-    "prettier": "^3.4.0",
-    "semantic-release": "^24.2.0",
-    "tsup": "^8.3.5",
-    "typescript": "~5.7.2",
-    "typescript-eslint": "^8.16.0"
+    "prettier": "^3.5.3",
+    "semantic-release": "^24.2.3",
+    "tsup": "^8.4.0",
+    "typescript": "~5.8.2",
+    "typescript-eslint": "^8.26.1"
   }
 }
