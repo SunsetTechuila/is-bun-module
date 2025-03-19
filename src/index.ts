@@ -8,19 +8,19 @@ import nodeModules from "@assets/node-modules.json";
 type SemVerBaseStringified = `${bigint}.${bigint}.${bigint}`;
 type SemVerStringifiedWithReleaseName = `${SemVerBaseStringified}-${string}`;
 type SemVerStringified = SemVerBaseStringified | SemVerStringifiedWithReleaseName;
-export type Version = SemVerStringified | "latest";
+export type BunVersion = SemVerStringified | "latest";
 
 export const MINIMUM_BUN_VERSION = "1.0.0" satisfies SemVerBaseStringified;
 
-export function isBunModule(moduleName: string, bunVersion?: Version): boolean {
+export function isBunModule(moduleName: string, bunVersion?: BunVersion): boolean {
   return checkModule(moduleName, bunModules, bunVersion);
 }
 
-export function isSupportedNodeModule(moduleName: string, bunVersion?: Version): boolean {
+export function isSupportedNodeModule(moduleName: string, bunVersion?: BunVersion): boolean {
   return checkModule(moduleName.replace(/^node:/, ""), nodeModules, bunVersion);
 }
 
-export function isBunBuiltin(moduleName: string, bunVersion?: Version): boolean {
+export function isBunBuiltin(moduleName: string, bunVersion?: BunVersion): boolean {
   return isBunModule(moduleName, bunVersion) || isSupportedNodeModule(moduleName, bunVersion);
 }
 
@@ -28,15 +28,15 @@ type BunModules = typeof bunModules;
 type SupportedNodeModules = typeof nodeModules;
 type CoreModules = BunModules | SupportedNodeModules;
 
-function checkModule(moduleName: string, modules: CoreModules, bunVersion?: Version): boolean {
+function checkModule(moduleName: string, modules: CoreModules, bunVersion?: BunVersion): boolean {
   if (typeof moduleName !== "string") throw new TypeError("Module name must be a string");
   if (!(moduleName in modules)) return false;
 
-  let targetBunVersion: Version | undefined;
+  let targetBunVersion: BunVersion | undefined;
   if (bunVersion) {
     targetBunVersion = toSemVerStringified(bunVersion);
     if (!targetBunVersion) {
-      throw new TypeError("Bun version must be a string like 1.0.0 or 'latest'");
+      throw new TypeError("Bun version must be a string like '1.0.0' or 'latest'");
     }
   } else {
     if (typeof process === "undefined" || !process.versions?.bun) {
