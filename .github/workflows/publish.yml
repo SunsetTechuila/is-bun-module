@@ -18,21 +18,21 @@ jobs:
       issues: write
     steps:
       - name: Checkout repo
-        uses: actions/checkout@9a9194f87191a7e9055e3e9b95b8cfb13023bb08
+        uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
 
       - name: Setup Node.js
-        uses: actions/setup-node@26961cf329f22f6837d5f54c3efd76b480300ace
+        uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e
         with:
           node-version: lts/*
 
       - name: Setup Bun
-        uses: oven-sh/setup-bun@b9d34de66d2a7faee36a22446c434b7c959e48d2
+        uses: oven-sh/setup-bun@54cb141c5c91e2fdc396be3155a391f28e1822eb
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
       - name: Download package build
-        uses: actions/download-artifact@d0ce8fd1167ed839810201de977912a090ab10a7
+        uses: actions/download-artifact@95815c38cf2ff2164869cbab79da8d1f422bc89e
         with:
           name: dist@${{ github.sha }}
           path: dist
