@@ -24,6 +24,18 @@ export function isBunBuiltin(moduleName: string, bunVersion?: BunVersion): boole
   return isBunModule(moduleName, bunVersion) || isBunImplementedNodeModule(moduleName, bunVersion);
 }
 
+export function getBunModules(version?: BunVersion): string[] {
+  return getModules(bunModules, version);
+}
+
+export function getBunImplementedNodeModules(version?: BunVersion): string[] {
+  return getModules(nodeModules, version);
+}
+
+export function getBunBuiltinModules(version?: BunVersion): string[] {
+  return getModules({ ...bunModules, ...nodeModules }, version);
+}
+
 type BunModules = typeof bunModules;
 type ImplementedNodeModules = typeof nodeModules;
 type CoreModules = BunModules | ImplementedNodeModules;
@@ -32,12 +44,9 @@ function checkModule(moduleName: string, modules: CoreModules, bunVersion?: BunV
   if (typeof moduleName !== "string") throw new TypeError("Module name must be a string");
   if (!(moduleName in modules)) return false;
 
-  let targetBunVersion: BunVersion | undefined;
+  let targetBunVersion: SemVerStringified;
   if (bunVersion) {
     targetBunVersion = toSemVerStringified(bunVersion);
-    if (!targetBunVersion) {
-      throw new TypeError("Bun version must be a string like '1.0.0' or 'latest'");
-    }
   } else {
     if (typeof process === "undefined" || !process.versions?.bun) {
       targetBunVersion = toSemVerStringified("latest");
@@ -49,13 +58,36 @@ function checkModule(moduleName: string, modules: CoreModules, bunVersion?: BunV
     throw new RangeError(`Bun version must be at least ${MINIMUM_BUN_VERSION}`);
   }
 
-  const versionRange = modules[moduleName as keyof typeof modules];
-  if (typeof versionRange === "boolean") return versionRange;
-  return satisfies(targetBunVersion, versionRange);
+  return satisfiesVersionRange(targetBunVersion, modules[moduleName as keyof typeof modules]);
 }
 
-function toSemVerStringified(input: unknown): SemVerStringified | undefined {
-  if (typeof input !== "string") return;
-  if (input === "latest") return "999.999.999";
+function getModules(modules: CoreModules, bunVersion?: BunVersion): string[] {
+  let targetBunVersion: SemVerStringified;
+  if (bunVersion) {
+    targetBunVersion = toSemVerStringified(bunVersion);
+  } else {
+    if (typeof Bun === "undefined") {
+      targetBunVersion = toSemVerStringified("latest");
+    }
+    targetBunVersion = Bun.version as SemVerStringified;
+  }
+
+  return Object.keys(modules).filter((moduleName) => {
+    return satisfiesVersionRange(targetBunVersion, modules[moduleName as keyof typeof modules]);
+  });
+}
+
+function satisfiesVersionRange(
+  version: SemVerStringified,
+  versionRange: string | boolean,
+): boolean {
+  if (typeof versionRange === "boolean") return versionRange;
+  return satisfies(version, versionRange);
+}
+
+function toSemVerStringified(input: unknown): SemVerStringified {
+  if (typeof input !== "string") throw new TypeError("Bun version must be a string");
+  if (input === "latest") return "999.999.999" as SemVerStringified;
   if (valid(input)) return input as SemVerBaseStringified;
+  throw new TypeError("Bun version must be a string like '1.0.0' or 'latest'");
 }
