@@ -1,22 +1,26 @@
 import { defineConfig, type Options } from "tsup";
 
-const baseConfig = {
-  entry: ["src/index.ts"],
+const sharedConfig = {
+  entry: ["src/shared.ts"],
   target: "es2019",
+  format: ["cjs"],
   dts: true,
   clean: true,
 } satisfies Options;
 
-const cjsConfig = {
-  ...baseConfig,
-  format: "cjs",
-  outDir: "dist/cjs",
+const genericConfig = {
+  entry: ["src/generic.ts"],
+  target: "es2019",
+  format: ["cjs"],
+  external: ["./shared"],
+  dts: true,
 } satisfies Options;
 
-const esmConfig = {
-  ...baseConfig,
-  format: "esm",
-  outDir: "dist/esm",
+const bunConfig = {
+  entry: ["src/bun.ts"],
+  target: "es2022",
+  format: ["esm"],
+  external: ["./shared"],
 } satisfies Options;
 
-export default defineConfig([cjsConfig, esmConfig]);
+export default defineConfig([sharedConfig, genericConfig, bunConfig]);
