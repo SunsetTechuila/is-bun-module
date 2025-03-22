@@ -1,6 +1,6 @@
 import { test, expect, describe } from "bun:test";
 import bundledBunModules from "@assets/bun-modules.json";
-import bundledNodeModules from "@assets/node-modules.json";
+import bundledNodeModules from "@assets/implemented-node-modules.json";
 
 import {
   getBunModules,
@@ -25,7 +25,7 @@ describe("Module lists checking", () => {
     });
   });
 
-  test("getBunImplementedNodeModules() equals keys of node-modules.json", () => {
+  test("getBunImplementedNodeModules() equals keys of implemented-node-modules.json", () => {
     expect(getBunImplementedNodeModules()).toContainAllValues(nodeModulesList);
   });
   test("getBunImplementedNodeModules() returns only node modules", () => {
@@ -37,7 +37,7 @@ describe("Module lists checking", () => {
     expect(getBunImplementedNodeModules("1.0.0")).not.toContain("http2");
   });
 
-  test("getBunBuiltinModules() equals keys of node-modules.json && bun-modules.json", () => {
+  test("getBunBuiltinModules() equals keys of implemented-node-modules.json && bun-modules.json", () => {
     expect(getBunBuiltinModules()).toContainAllValues(builtinModulesList);
   });
   test("getBunBuiltinModules() returns only built-in modules", () => {

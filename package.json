@@ -7,18 +7,12 @@
   "files": [
     "dist/**/*"
   ],
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.mjs",
+  "main": "./dist/generic.js",
   "exports": {
     ".": {
-      "import": {
-        "types": "./dist/esm/index.d.mts",
-        "default": "./dist/esm/index.mjs"
-      },
-      "require": {
-        "types": "./dist/cjs/index.d.ts",
-        "default": "./dist/cjs/index.js"
-      }
+      "bun": "./dist/bun.mjs",
+      "types": "./dist/generic.d.ts",
+      "default": "./dist/generic.js"
     },
     "./package.json": "./package.json"
   },
