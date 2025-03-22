@@ -48,6 +48,7 @@
     "format:base": "bun prettier . --cache",
     "lint": "bun eslint . --cache",
     "type-check": "bun tsc",
+    "get-bun-blogs": "bun scripts/getBunBlogs.ts",
     "publish": "bun semantic-release",
     "prepare": "bun husky"
   },
