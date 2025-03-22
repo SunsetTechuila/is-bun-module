@@ -40,7 +40,7 @@ function checkModule(moduleName: string, modules: CoreModules, bunVersion?: BunV
     }
   } else {
     if (typeof process === "undefined" || !process.versions?.bun) {
-      throw new Error("Bun version is not provided and cannot be detected");
+      targetBunVersion = toSemVerStringified("latest");
     }
     targetBunVersion = process.versions.bun as SemVerStringified;
   }
