@@ -3,7 +3,7 @@ import { test, expect, describe } from "bun:test";
 
 describe("Version ranges parsing", () => {
   test("Node modules is parsebable", async () => {
-    const nodeModules = (await import("@assets/node-modules.json")).default;
+    const nodeModules = (await import("@assets/implemented-node-modules.json")).default;
 
     for (const range of Object.values(nodeModules)) {
       expect(isValidRange(range)).toBe(true);

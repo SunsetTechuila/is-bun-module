@@ -3,7 +3,7 @@ import satisfies from "semver/functions/satisfies";
 import lt from "semver/functions/lt";
 
 import bunModules from "@assets/bun-modules.json";
-import nodeModules from "@assets/node-modules.json";
+import nodeModules from "@assets/implemented-node-modules.json";
 
 type SemVerBaseStringified = `${bigint}.${bigint}.${bigint}`;
 type SemVerStringifiedWithReleaseName = `${SemVerBaseStringified}-${string}`;
@@ -16,17 +16,17 @@ export function isBunModule(moduleName: string, bunVersion?: BunVersion): boolea
   return checkModule(moduleName, bunModules, bunVersion);
 }
 
-export function isSupportedNodeModule(moduleName: string, bunVersion?: BunVersion): boolean {
+export function isBunImplementedNodeModule(moduleName: string, bunVersion?: BunVersion): boolean {
   return checkModule(moduleName.replace(/^node:/, ""), nodeModules, bunVersion);
 }
 
 export function isBunBuiltin(moduleName: string, bunVersion?: BunVersion): boolean {
-  return isBunModule(moduleName, bunVersion) || isSupportedNodeModule(moduleName, bunVersion);
+  return isBunModule(moduleName, bunVersion) || isBunImplementedNodeModule(moduleName, bunVersion);
 }
 
 type BunModules = typeof bunModules;
-type SupportedNodeModules = typeof nodeModules;
-type CoreModules = BunModules | SupportedNodeModules;
+type ImplementedNodeModules = typeof nodeModules;
+type CoreModules = BunModules | ImplementedNodeModules;
 
 function checkModule(moduleName: string, modules: CoreModules, bunVersion?: BunVersion): boolean {
   if (typeof moduleName !== "string") throw new TypeError("Module name must be a string");
