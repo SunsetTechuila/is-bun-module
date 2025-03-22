@@ -8,6 +8,7 @@ describe("Implemented Node modules checking", () => {
     expect(isBunImplementedNodeModule("node:fs")).toBe(true);
     expect(isBunImplementedNodeModule("http2", "1.0.13")).toBe(true);
     expect(isBunImplementedNodeModule("node:http2", "1.0.13")).toBe(true);
+    expect(isBunImplementedNodeModule("node:test", "1.2.6")).toBe(true);
   });
 
   test("Return false for non-node/not implemented modules", () => {
@@ -15,5 +16,6 @@ describe("Implemented Node modules checking", () => {
     expect(isBunImplementedNodeModule("node:bun")).toBe(false);
     expect(isBunImplementedNodeModule("node:http2", "1.0.0")).toBe(false);
     expect(isBunImplementedNodeModule("http2", "1.0.0")).toBe(false);
+    expect(isBunImplementedNodeModule("test", "1.2.6")).toBe(false);
   });
 });
