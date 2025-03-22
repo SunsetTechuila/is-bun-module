@@ -11,14 +11,14 @@ isBunModule("bun:test", "1.0.0"); // true
 isBunModule("notBunModule"); // false
 ```
 
-To check if a specifier is a Node module [supported by Bun](https://bun.sh/docs/runtime/nodejs-apis):
+To check if a specifier is a Node module [implemented in Bun](https://bun.sh/docs/runtime/nodejs-apis):
 
 ```typescript
-import { isSupportedNodeModule } from "is-bun-module";
-isSupportedNodeModule("fs"); // true
-isSupportedNodeModule("node:fs"); // true
-isSupportedNodeModule("node:notNodeModule"); // false
-isSupportedNodeModule("node:http2", "1.0.0"); // false, added in 1.0.13
+import { isBunImplementedNodeModule } from "is-bun-module";
+isBunImplementedNodeModule("fs"); // true
+isBunImplementedNodeModule("node:fs"); // true
+isBunImplementedNodeModule("node:notNodeModule"); // false
+isBunImplementedNodeModule("node:http2", "1.0.0"); // false, added in 1.0.13
 ```
 
 ## Notes
