@@ -16,8 +16,8 @@ describe("Module lists checking", () => {
   const nodeModulesList = Object.keys(bundledNodeModules);
   const builtinModulesList = [...bunModulesList, ...nodeModulesList];
 
-  test("getBunModules() equals keys of bun-modules.json", () => {
-    expect(getBunModules()).toContainAllValues(bunModulesList);
+  test("getBunModules('latest') equals keys of bun-modules.json", () => {
+    expect(getBunModules("latest")).toContainAllValues(bunModulesList);
   });
   test("getBunModules() returns only bun modules", () => {
     getBunModules().forEach((moduleName) => {
@@ -25,8 +25,8 @@ describe("Module lists checking", () => {
     });
   });
 
-  test("getBunImplementedNodeModules() equals keys of implemented-node-modules.json", () => {
-    expect(getBunImplementedNodeModules()).toContainAllValues(nodeModulesList);
+  test("getBunImplementedNodeModules('latest') equals keys of implemented-node-modules.json", () => {
+    expect(getBunImplementedNodeModules("latest")).toContainAllValues(nodeModulesList);
   });
   test("getBunImplementedNodeModules() returns only node modules", () => {
     getBunImplementedNodeModules().forEach((moduleName) => {
@@ -37,8 +37,8 @@ describe("Module lists checking", () => {
     expect(getBunImplementedNodeModules("1.0.0")).not.toContain("http2");
   });
 
-  test("getBunBuiltinModules() equals keys of implemented-node-modules.json && bun-modules.json", () => {
-    expect(getBunBuiltinModules()).toContainAllValues(builtinModulesList);
+  test("getBunBuiltinModules('latest') equals keys of implemented-node-modules.json && bun-modules.json", () => {
+    expect(getBunBuiltinModules("latest")).toContainAllValues(builtinModulesList);
   });
   test("getBunBuiltinModules() returns only built-in modules", () => {
     getBunBuiltinModules().forEach((moduleName) => {

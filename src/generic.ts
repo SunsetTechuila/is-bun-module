@@ -9,11 +9,7 @@ export function isBunModule(moduleName: string, bunVersion?: BunVersion): boolea
 }
 
 export function isBunImplementedNodeModule(moduleName: string, bunVersion?: BunVersion): boolean {
-  return checkModule(
-    moduleName.replace(/^node:/, ""),
-    implementedNodeModules,
-    bunVersion ?? "latest",
-  );
+  return checkModule(moduleName, implementedNodeModules, bunVersion ?? "latest");
 }
 
 export function isBunBuiltin(moduleName: string, bunVersion?: BunVersion): boolean {
