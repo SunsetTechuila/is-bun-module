@@ -11,7 +11,7 @@ jobs:
 
   check_format:
     name: Check formatting
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -28,7 +28,7 @@ jobs:
   check_types:
     name: Check types
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -51,7 +51,7 @@ jobs:
   lint:
     name: Lint code
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -74,7 +74,7 @@ jobs:
   test:
     name: Test package
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
