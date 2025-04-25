@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "ES2022",
     "moduleResolution": "Bundler",
-    "target": "ES2022",
+    "target": "ES2024",
 
     "moduleDetection": "force",
     "verbatimModuleSyntax": true,

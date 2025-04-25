@@ -18,7 +18,7 @@ const genericConfig = {
 
 const bunConfig = {
   entry: ["src/bun.ts"],
-  target: "es2022",
+  target: "es2023",
   format: ["esm"],
   external: ["./shared"],
 } satisfies Options;
