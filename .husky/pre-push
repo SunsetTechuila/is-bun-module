@@ -1,6 +1,16 @@
-remote_branch="$(git rev-parse --abbrev-ref --symbolic-full-name '@{u}' 2>/dev/null || echo "no_upstream")"
-
-if [[ "$remote_branch" == "origin/master" ]]; then
-  bun commitlint --from="$remote_branch" --to=HEAD
+run_checks() {
+  bun --bun commitlint $1
   bun run check-all
+}
+
+if git rev-parse --abbrev-ref --symbolic-full-name '@{u}' &>/dev/null; then
+  remote_branch="$(git rev-parse --abbrev-ref --symbolic-full-name '@{u}')"
+  if [[ "$remote_branch" == "origin/master" ]]; then
+    run_checks "--from=$remote_branch --to=HEAD"
+  fi
+else
+  current_branch="$(git rev-parse --abbrev-ref HEAD)"
+  if [[ "$current_branch" == "master" ]]; then
+    run_checks
+  fi
 fi
