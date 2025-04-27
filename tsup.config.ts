@@ -4,7 +4,7 @@ const sharedConfig = {
   entry: ["src/shared.ts"],
   target: "es2019",
   format: ["cjs"],
-  dts: true,
+  experimentalDts: true,
   clean: true,
 } satisfies Options;
 
@@ -13,7 +13,7 @@ const genericConfig = {
   target: "es2019",
   format: ["cjs"],
   external: ["./shared"],
-  dts: true,
+  experimentalDts: true,
 } satisfies Options;
 
 const bunConfig = {
@@ -23,4 +23,9 @@ const bunConfig = {
   external: ["./shared"],
 } satisfies Options;
 
-export default defineConfig([sharedConfig, genericConfig, bunConfig]);
+const config:
+  | Options
+  | Options[]
+  | ((overrideOptions: Options) => Options | Options[] | Promise<Options | Options[]>) =
+  defineConfig([sharedConfig, genericConfig, bunConfig]);
+export default config;

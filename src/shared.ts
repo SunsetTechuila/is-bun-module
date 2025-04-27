@@ -12,7 +12,7 @@ export type BunVersion = SemVerStringified | "latest";
 
 export type Modules = Record<string, string | boolean>;
 
-export const MINIMUM_BUN_VERSION = "1.0.0" satisfies SemVerBaseStringified;
+export const MINIMUM_BUN_VERSION: SemVerBaseStringified = "1.0.0";
 
 export function checkModule(moduleName: string, modules: Modules, bunVersion: BunVersion): boolean {
   if (typeof moduleName !== "string") throw new TypeError("Module name must be a string");
