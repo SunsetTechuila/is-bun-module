@@ -1,4 +1,4 @@
-import { defineConfig, type Options } from "tsup";
+import { defineConfig, type Options, type UserConfig } from "tsdown";
 
 const sharedConfig = {
   entry: ["src/shared.ts"],
@@ -23,4 +23,5 @@ const bunConfig = {
   external: ["./shared"],
 } satisfies Options;
 
-export default defineConfig([sharedConfig, genericConfig, bunConfig]);
+const config: UserConfig = defineConfig([sharedConfig, genericConfig, bunConfig]);
+export default config;

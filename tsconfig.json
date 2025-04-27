@@ -5,7 +5,10 @@
     "target": "ES2024",
 
     "moduleDetection": "force",
+    "composite": true,
     "verbatimModuleSyntax": true,
+    "isolatedDeclarations": true,
+    "erasableSyntaxOnly": true,
     "esModuleInterop": true,
     "noEmit": true,
 

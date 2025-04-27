@@ -33,7 +33,7 @@
     "bun"
   ],
   "scripts": {
-    "build": "bun tsup",
+    "build": "bun tsdown",
     "check-all": "bun concurrently --kill-others=failure 'bun run test' 'bun lint' 'bun type-check' 'bun format:check'",
     "precheck-all": "bun run build",
     "test": "bun test",
@@ -62,7 +62,7 @@
     "husky": "^9.1.7",
     "prettier": "^3.5.3",
     "semantic-release": "^24.2.3",
-    "tsup": "^8.4.0",
+    "tsdown": "^0.9.8",
     "typescript": "~5.8.2",
     "typescript-eslint": "^8.26.1"
   }
