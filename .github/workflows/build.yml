@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout repo
-        uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
       - name: Setup Bun
-        uses: oven-sh/setup-bun@54cb141c5c91e2fdc396be3155a391f28e1822eb
+        uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
 
       - name: Install dependencies
         run: bun install
