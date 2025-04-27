@@ -1,4 +1,4 @@
-import { test, expect, describe } from "bun:test";
+import { test, expect, describe } from "./testRunner";
 
 import { isBunImplementedNodeModule } from "is-bun-module";
 

@@ -33,18 +33,19 @@
     "bun"
   ],
   "scripts": {
-    "build": "bun tsdown",
-    "check-all": "bun concurrently --kill-others=failure 'bun run test' 'bun lint' 'bun type-check' 'bun format:check'",
+    "build": "tsdown",
+    "check-all": "concurrently --kill-others=failure 'node --run test:node' 'bun test:bun' 'bun lint' 'bun type-check' 'bun format:check'",
     "precheck-all": "bun run build",
-    "test": "bun test",
+    "test:bun": "bun test",
+    "test:node": "vitest run",
     "format": "bun format:base --write",
     "format:check": "bun format:base --check",
-    "format:base": "bun prettier . --cache",
-    "lint": "bun eslint . --cache",
-    "type-check": "bun tsc",
+    "format:base": "prettier . --cache",
+    "lint": "eslint . --cache",
+    "type-check": "tsc",
     "get-bun-blogs": "bun scripts/getBunBlogs.ts",
-    "publish": "bun semantic-release",
-    "prepare": "bun husky"
+    "publish": "semantic-release",
+    "prepare": "husky"
   },
   "dependencies": {
     "semver": "^7.7.1"
@@ -64,6 +65,8 @@
     "semantic-release": "^24.2.3",
     "tsdown": "^0.9.8",
     "typescript": "~5.8.2",
-    "typescript-eslint": "^8.26.1"
+    "typescript-eslint": "^8.26.1",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.1.2"
   }
 }

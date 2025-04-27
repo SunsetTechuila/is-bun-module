@@ -1,4 +1,5 @@
-import { test, expect, describe } from "bun:test";
+import { test, expect, describe } from "./testRunner";
+
 import bundledBunModules from "@assets/bun-modules.json";
 import bundledNodeModules from "@assets/implemented-node-modules.json";
 

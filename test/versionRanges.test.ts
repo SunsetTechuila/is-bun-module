@@ -1,5 +1,6 @@
+import { test, expect, describe } from "./testRunner";
+
 import semver from "semver";
-import { test, expect, describe } from "bun:test";
 
 describe("Version ranges parsing", () => {
   test("Node modules is parsebable", async () => {

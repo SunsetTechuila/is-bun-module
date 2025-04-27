@@ -75,9 +75,20 @@ jobs:
     name: Test package
     needs: build
     runs-on: ubuntu-24.04-arm
+    strategy:
+      matrix:
+        runtime:
+          - node
+          - bun
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        if: matrix.runtime == 'node'
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -91,5 +102,5 @@ jobs:
           name: dist@${{ github.sha }}
           path: dist
 
-      - name: Run tests
-        run: bun run test
+      - name: Run tests on ${{ matrix.runtime }}
+        run: bun run test:${{ matrix.runtime }}
