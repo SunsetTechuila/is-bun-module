@@ -102,5 +102,10 @@ jobs:
           name: dist@${{ github.sha }}
           path: dist
 
-      - name: Run tests on ${{ matrix.runtime }}
-        run: bun run test:${{ matrix.runtime }}
+      - name: Run tests on Bun
+        if: matrix.runtime == 'bun'
+        run: bun run test:bun
+
+      - name: Run tests on Node.js
+        if: matrix.runtime == 'node'
+        run: node --run test:node
