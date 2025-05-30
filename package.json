@@ -48,25 +48,26 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "semver": "^7.7.1"
+    "semver": "^7.7.2"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.8.0",
-    "@commitlint/config-conventional": "^19.8.0",
-    "@eslint/js": "^9.25.1",
-    "@semantic-release/exec": "^7.0.3",
-    "@types/bun": "^1.2.10",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@eslint/js": "^9.27.0",
+    "@semantic-release/exec": "^7.1.0",
+    "@types/bun": "^1.2.15",
     "@types/semver": "^7.7.0",
     "concurrently": "^9.1.2",
-    "eslint": "^9.25.1",
-    "eslint-config-prettier": "^10.1.2",
+    "eslint": "^9.27.0",
+    "eslint-config-prettier": "^10.1.5",
     "husky": "^9.1.7",
     "prettier": "^3.5.3",
-    "semantic-release": "^24.2.3",
-    "tsdown": "^0.9.9",
+    "semantic-release": "^24.2.5",
+    "ts-essentials": "^10.0.4",
+    "tsdown": "^0.12.5",
     "typescript": "~5.8.3",
-    "typescript-eslint": "^8.31.0",
+    "typescript-eslint": "^8.33.0",
     "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^3.1.2"
+    "vitest": "^3.1.4"
   }
 }
