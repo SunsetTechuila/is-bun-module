@@ -1,27 +1,26 @@
-import { defineConfig, type Options, type UserConfig, type UserConfigFn } from "tsdown";
+import { defineConfig, type UserConfig, type UserConfigFn } from "tsdown";
 
 const sharedConfig = {
   entry: ["src/shared.ts"],
   target: "es2019",
-  format: ["cjs"],
+  format: "cjs",
   dts: true,
-  clean: true,
-} satisfies Options;
+} as const satisfies UserConfig;
 
 const genericConfig = {
   entry: ["src/generic.ts"],
   target: "es2019",
-  format: ["cjs"],
+  format: "cjs",
   external: ["./shared"],
   dts: true,
-} satisfies Options;
+} as const satisfies UserConfig;
 
 const bunConfig = {
   entry: ["src/bun.ts"],
   target: "es2023",
-  format: ["esm"],
+  format: "esm",
   external: ["./shared"],
-} satisfies Options;
+} as const satisfies UserConfig;
 
 const config: UserConfig | UserConfigFn = defineConfig([sharedConfig, genericConfig, bunConfig]);
 export default config;
