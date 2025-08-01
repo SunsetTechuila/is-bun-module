@@ -1,25 +1,24 @@
 // @ts-check
 
+import { globalIgnores } from "eslint/config";
+import tseslint from "typescript-eslint";
 import eslint from "@eslint/js";
-import typescript from "typescript-eslint";
 import configPrettier from "eslint-config-prettier";
 
-export default typescript.config({
-  extends: [
-    eslint.configs.recommended,
-    ...typescript.configs.recommendedTypeChecked,
-    ...typescript.configs.stylisticTypeChecked,
-    configPrettier,
-  ],
-  plugins: {
-    "@typescript-eslint": typescript.plugin,
-  },
-  languageOptions: {
-    parser: typescript.parser,
-    parserOptions: {
-      tsconfigRootDir: import.meta.dir,
-      project: "./tsconfig.json",
+export default tseslint.config(
+  eslint.configs.recommended,
+  tseslint.configs.recommendedTypeChecked,
+  tseslint.configs.stylisticTypeChecked,
+  configPrettier,
+  {
+    languageOptions: {
+      parserOptions: {
+        projectService: {
+          allowDefaultProject: ["eslint.config.mjs"],
+        },
+        tsconfigRootDir: import.meta.dirname,
+      },
     },
   },
-  ignores: ["node_modules/**", "dist/**", "eslint.config.mjs"],
-});
+  globalIgnores(["node_modules/", "dist/"]),
+);
