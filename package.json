@@ -63,7 +63,6 @@
     "husky": "^9.1.7",
     "prettier": "^3.6.2",
     "semantic-release": "^24.2.7",
-    "ts-essentials": "^10.1.1",
     "tsdown": "^0.13.0",
     "typescript": "~5.9.2",
     "typescript-eslint": "^8.38.0",
