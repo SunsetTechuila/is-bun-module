@@ -10,7 +10,8 @@ updates:
       prefix: "ci(github/workflows):"
     groups:
       ci-dependencies:
-        dependency-type: development
+        patterns:
+          - "*"
 
   - package-ecosystem: bun
     directory: /
