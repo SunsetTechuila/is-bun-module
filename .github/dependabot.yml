@@ -6,6 +6,8 @@ updates:
     directory: /
     schedule:
       interval: monthly
+    cooldown:
+      default-days: 7
     commit-message:
       prefix: "ci(github/workflows):"
     groups:
@@ -17,6 +19,8 @@ updates:
     directory: /
     schedule:
       interval: monthly
+    cooldown:
+      default-days: 7
     versioning-strategy: increase
     commit-message:
       prefix: "build(deps):"
