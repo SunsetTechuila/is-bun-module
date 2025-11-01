@@ -40,7 +40,7 @@ jobs:
         run: bun install
 
       - name: Download package build
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6.0.0
         with:
           name: dist@${{ github.sha }}
           path: dist
@@ -63,7 +63,7 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Download package build
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6.0.0
         with:
           name: dist@${{ github.sha }}
           path: dist
@@ -86,7 +86,7 @@ jobs:
 
       - name: Setup Node.js
         if: matrix.runtime == 'node'
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6.0.0
         with:
           node-version-file: .node-version
 
@@ -97,7 +97,7 @@ jobs:
         run: bun install
 
       - name: Download package build
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6.0.0
         with:
           name: dist@${{ github.sha }}
           path: dist
