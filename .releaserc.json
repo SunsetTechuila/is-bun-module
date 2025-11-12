@@ -7,7 +7,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "npm pkg set version=${nextRelease.version} && bun pm pack"
+        "prepareCmd": "bun pm pkg set version=${nextRelease.version} && bun pm pack"
       }
     ],
     [
