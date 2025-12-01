@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6.0.0
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6.0.0
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -40,7 +40,7 @@ jobs:
         run: bun install
 
       - name: Download package build
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6.0.0
         with:
           name: dist@${{ github.sha }}
           path: dist
@@ -54,7 +54,7 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6.0.0
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -63,7 +63,7 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Download package build
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6.0.0
         with:
           name: dist@${{ github.sha }}
           path: dist
@@ -82,11 +82,11 @@ jobs:
           - bun
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6.0.0
 
       - name: Setup Node.js
         if: matrix.runtime == 'node'
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6.0.0
         with:
           node-version-file: .node-version
 
@@ -97,7 +97,7 @@ jobs:
         run: bun install
 
       - name: Download package build
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6.0.0
         with:
           name: dist@${{ github.sha }}
           path: dist
