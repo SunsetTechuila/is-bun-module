@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Build the package
+    name: Build
     runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout repo
@@ -18,7 +18,7 @@ jobs:
       - name: Install dependencies
         run: bun install
 
-      - name: Build package
+      - name: Run build script
         run: bun run build
 
       - name: Upload package build
