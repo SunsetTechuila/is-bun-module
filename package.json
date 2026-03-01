@@ -33,19 +33,19 @@
     "bun"
   ],
   "scripts": {
-    "build": "tsdown",
-    "check-all": "concurrently --kill-others=failure 'node --run test:node' 'bun test:bun' 'bun lint' 'bun type-check' 'bun format:check'",
+    "build": "bun --bun tsdown",
+    "check-all": "bun --parallel 'node --run test:node' 'test:bun' 'lint' 'type-check' 'format:check'",
     "precheck-all": "bun run build",
     "test:bun": "bun test",
     "test:node": "vitest run",
     "format": "bun format:base --write",
     "format:check": "bun format:base --check",
-    "format:base": "prettier . --cache",
-    "lint": "eslint . --cache",
-    "type-check": "tsc",
+    "format:base": "bun --bun prettier . --cache",
+    "lint": "bun --bun eslint . --cache",
+    "type-check": "bun --bun tsc",
     "get-bun-blogs": "bun scripts/getBunBlogs.ts",
-    "publish": "semantic-release",
-    "prepare": "husky"
+    "publish": "bun --bun semantic-release",
+    "prepare": "bun --bun husky"
   },
   "dependencies": {
     "semver": "^7.7.4"
@@ -57,7 +57,6 @@
     "@semantic-release/exec": "^7.1.0",
     "@types/bun": "^1.2.19",
     "@types/semver": "^7.7.1",
-    "concurrently": "^9.2.0",
     "eslint": "^9.32.0",
     "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
