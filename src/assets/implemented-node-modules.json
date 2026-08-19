@@ -33,7 +33,6 @@
   "node:assert/strict": true,
   "async_hooks": true,
   "node:async_hooks": true,
-  "async_hooks/async_context": true,
   "buffer": true,
   "node:buffer": true,
   "child_process": true,

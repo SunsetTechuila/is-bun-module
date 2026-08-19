@@ -33,6 +33,7 @@ describe("Implemented Node modules checking", () => {
     expect(isBunImplementedNodeModule("http2", "1.0.0")).toBe(false);
     expect(isBunImplementedNodeModule("test", "1.2.6")).toBe(false);
     expect(isBunImplementedNodeModule("node:sea", "latest")).toBe(false);
+    expect(isBunImplementedNodeModule("async_hooks/async_context", "latest")).toBe(false);
   });
 
   test("Return false for modules implemented in a later Bun version", () => {
