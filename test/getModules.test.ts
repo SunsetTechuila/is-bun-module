@@ -36,6 +36,8 @@ describe("Module lists checking", () => {
   });
   test("getBunImplementedNodeModules() doesn't return not implemented node modules", () => {
     expect(getBunImplementedNodeModules("1.0.0")).not.toContain("http2");
+    expect(getBunImplementedNodeModules("1.3.14")).not.toContain("node:sqlite");
+    expect(getBunImplementedNodeModules("1.4.0")).toContain("node:sqlite");
   });
 
   test("getBunBuiltinModules('latest') equals keys of implemented-node-modules.json && bun-modules.json", () => {
