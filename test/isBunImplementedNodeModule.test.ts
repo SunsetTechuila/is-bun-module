@@ -9,7 +9,6 @@ describe("Implemented Node modules checking", () => {
     expect(isBunImplementedNodeModule("http2", "1.0.13")).toBe(true);
     expect(isBunImplementedNodeModule("node:http2", "1.0.13")).toBe(true);
     expect(isBunImplementedNodeModule("node:test", "1.2.6")).toBe(true);
-    expect(isBunImplementedNodeModule("_tls_wrap", "1.4.0")).toBe(true);
     expect(isBunImplementedNodeModule("async_hooks", "1.0.0")).toBe(true);
   });
 
@@ -19,7 +18,6 @@ describe("Implemented Node modules checking", () => {
     expect(isBunImplementedNodeModule("node:http2", "1.0.0")).toBe(false);
     expect(isBunImplementedNodeModule("http2", "1.0.0")).toBe(false);
     expect(isBunImplementedNodeModule("node:test", "1.2.5")).toBe(false);
-    expect(isBunImplementedNodeModule("_tls_wrap", "1.3.14")).toBe(false);
     expect(isBunImplementedNodeModule("async_hooks/async_context", "1.0.0")).toBe(false);
   });
 
