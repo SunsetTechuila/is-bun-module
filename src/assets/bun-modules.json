@@ -1,5 +1,6 @@
 {
   "bun": true,
+  "bun:bundle": ">= 1.3.5",
   "bun:ffi": true,
   "bun:jsc": true,
   "bun:sqlite": true,
