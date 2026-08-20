@@ -1,5 +1,4 @@
 {
-  "node:_tls_wrap": ">= 1.4.0",
   "assert": true,
   "assert/strict": true,
   "node:assert": true,
