@@ -4,15 +4,15 @@
   "description": "Is this specifier a Bun core module or supported Node one?",
   "version": "1.0.1",
   "license": "MIT",
+  "type": "module",
   "files": [
     "dist/**/*"
   ],
-  "main": "./dist/generic.js",
+  "main": "./dist/index.js",
   "exports": {
     ".": {
-      "bun": "./dist/bun.mjs",
-      "types": "./dist/generic.d.ts",
-      "default": "./dist/generic.js"
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     },
     "./package.json": "./package.json"
   },
@@ -47,6 +47,9 @@
     "publish": "bun --bun semantic-release",
     "prepare": "bun --bun husky"
   },
+  "engines": {
+    "node": ">=16.9"
+  },
   "dependencies": {
     "semver": "^7.8.5"
   },
@@ -62,7 +65,7 @@
     "husky": "^9.1.7",
     "prettier": "^3.6.2",
     "semantic-release": "^24.2.7",
-    "tsdown": "^0.13.0",
+    "tsdown": "^0.23.7",
     "typescript": "~5.9.2",
     "typescript-eslint": "^8.38.0",
     "vite-tsconfig-paths": "^5.1.4",
