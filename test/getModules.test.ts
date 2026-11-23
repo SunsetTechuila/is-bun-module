@@ -1,4 +1,4 @@
-import { test, expect, describe } from "./testRunner";
+import { describe, expect, test } from "vitest";
 
 import bundledBunModules from "@assets/bun-modules.json";
 import bundledNodeModules from "@assets/implemented-node-modules.json";
@@ -18,7 +18,7 @@ describe("Module lists checking", () => {
   const builtinModulesList = [...bunModulesList, ...nodeModulesList];
 
   test("getBunModules('latest') equals keys of bun-modules.json", () => {
-    expect(getBunModules("latest")).toContainAllValues(bunModulesList);
+    expect(getBunModules("latest")).toEqual(expect.arrayContaining(bunModulesList));
   });
   test("getBunModules() returns only bun modules", () => {
     getBunModules().forEach((moduleName) => {
@@ -27,7 +27,7 @@ describe("Module lists checking", () => {
   });
 
   test("getBunImplementedNodeModules('latest') equals keys of implemented-node-modules.json", () => {
-    expect(getBunImplementedNodeModules("latest")).toContainAllValues(nodeModulesList);
+    expect(getBunImplementedNodeModules("latest")).toEqual(expect.arrayContaining(nodeModulesList));
   });
   test("getBunImplementedNodeModules() returns only node modules", () => {
     getBunImplementedNodeModules().forEach((moduleName) => {
@@ -39,7 +39,7 @@ describe("Module lists checking", () => {
   });
 
   test("getBunBuiltinModules('latest') equals keys of implemented-node-modules.json && bun-modules.json", () => {
-    expect(getBunBuiltinModules("latest")).toContainAllValues(builtinModulesList);
+    expect(getBunBuiltinModules("latest")).toEqual(expect.arrayContaining(builtinModulesList));
   });
   test("getBunBuiltinModules() returns only built-in modules", () => {
     getBunBuiltinModules().forEach((moduleName) => {

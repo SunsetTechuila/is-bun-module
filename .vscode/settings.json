@@ -1,5 +1,7 @@
 {
   "[typescript][javascript][json][markdown][yaml]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "js/ts.experimental.useTsgo": true,
+  "js/ts.tsdk.path": "./node_modules/tsrs/tsdk"
 }

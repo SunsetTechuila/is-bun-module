@@ -34,15 +34,13 @@
   ],
   "scripts": {
     "build": "bun --bun tsdown",
-    "check-all": "bun --parallel 'node --run test:node' 'test:bun' 'lint' 'type-check' 'format:check'",
+    "check-all": "bun --parallel 'test:node' 'test:bun' 'lint' 'format:check'",
     "precheck-all": "bun run build",
-    "test:bun": "bun test",
+    "test:bun": "bun --bun vitest run",
     "test:node": "vitest run",
-    "format": "bun format:base --write",
-    "format:check": "bun format:base --check",
-    "format:base": "bun --bun prettier . --cache",
-    "lint": "bun --bun eslint . --cache",
-    "type-check": "bun --bun tsc",
+    "format": "bun --bun oxfmt",
+    "format:check": "bun --bun oxfmt --check",
+    "lint": "bun --bun oxlint",
     "get-bun-blogs": "bun scripts/getBunBlogs.ts",
     "publish": "bun --bun semantic-release",
     "prepare": "bun --bun husky"
@@ -54,21 +52,17 @@
     "semver": "^7.8.5"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.8.1",
-    "@commitlint/config-conventional": "^19.8.1",
-    "@eslint/js": "^9.32.0",
+    "@commitlint/cli": "^21.2.4",
+    "@commitlint/config-conventional": "^21.2.4",
     "@semantic-release/exec": "^7.1.0",
-    "@types/bun": "^1.2.19",
+    "@types/bun": "^1.4.5",
     "@types/semver": "^7.8.0",
-    "eslint": "^9.32.0",
-    "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
-    "prettier": "^3.6.2",
-    "semantic-release": "^24.2.7",
+    "oxfmt": "^0.79.0",
+    "oxlint": "^1.94.0",
+    "semantic-release": "^26.0.1",
     "tsdown": "^0.23.7",
-    "typescript": "~5.9.2",
-    "typescript-eslint": "^8.38.0",
-    "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^3.2.4"
+    "tsrs": "^7.1.0-beta.tsrs4",
+    "vitest": "^5.1.0"
   }
 }

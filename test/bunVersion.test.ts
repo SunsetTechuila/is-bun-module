@@ -1,4 +1,4 @@
-import { test, expect, describe } from "./testRunner";
+import { describe, expect, test } from "vitest";
 
 import { isBunModule, isBunImplementedNodeModule, isBunBuiltin } from "is-bun-module";
 

@@ -5,7 +5,7 @@ const config = {
   target: "es2022",
   format: "esm",
   platform: "neutral",
-  dts: true,
+  dts: { generator: "tsrs" },
   deps: { resolveDepSubpath: true },
 } as const satisfies UserConfig;
 
