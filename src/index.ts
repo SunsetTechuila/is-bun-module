@@ -16,12 +16,15 @@ export type BunVersion = SemVerStringified | "latest";
 export const MINIMUM_BUN_VERSION = "1.0.0" satisfies SemVerBaseStringified;
 const MINIMUM_BUN_SEMVER = parse(MINIMUM_BUN_VERSION);
 const LATEST_BUN_SEMVER = parse("999.999.999");
-const CURRENT_BUN_SEMVER = CURRENT_BUN_VERSION ? parse(CURRENT_BUN_VERSION) : LATEST_BUN_SEMVER;
+const CURRENT_BUN_SEMVER =
+  CURRENT_BUN_VERSION && CURRENT_BUN_VERSION[0] !== "0"
+    ? parse(CURRENT_BUN_VERSION)
+    : LATEST_BUN_SEMVER;
 
 /**
  * Checks if the given module name is a native Bun module.
  * @param moduleName - The name of the module to check
- * @param bunVersion - Optional. The Bun version to check against. Defaults to the current Bun version if available, otherwise "latest".
+ * @param bunVersion - The Bun version to check against. Defaults to the current Bun version if available and is equal to or greater than 1.0.0, otherwise "latest".
  * @returns `true` if the module is a Bun module, `false` otherwise
  */
 export function isBunModule(moduleName: string, bunVersion?: BunVersion): boolean {
@@ -32,7 +35,7 @@ export function isBunModule(moduleName: string, bunVersion?: BunVersion): boolea
 /**
  * Checks if the given module name is a Node.js module implemented in Bun.
  * @param moduleName - The name of the module to check
- * @param bunVersion - Optional. The Bun version to check against. Defaults to the current Bun version if available, otherwise "latest".
+ * @param bunVersion - The Bun version to check against. Defaults to the current Bun version if available and is equal to or greater than 1.0.0, otherwise "latest".
  * @returns `true` if the module is a Node.js module implemented in Bun, `false` otherwise
  */
 export function isBunImplementedNodeModule(moduleName: string, bunVersion?: BunVersion): boolean {
@@ -43,7 +46,7 @@ export function isBunImplementedNodeModule(moduleName: string, bunVersion?: BunV
 /**
  * Checks if the given module name is a Bun builtin (either a Bun module or a Node.js module implemented in Bun).
  * @param moduleName - The name of the module to check
- * @param bunVersion - Optional. The Bun version to check against. Defaults to the current Bun version if available, otherwise "latest".
+ * @param bunVersion - The Bun version to check against. Defaults to the current Bun version if available and is equal to or greater than 1.0.0, otherwise "latest".
  * @returns `true` if the module is a Bun builtin, `false` otherwise
  */
 export function isBunBuiltin(moduleName: string, bunVersion?: BunVersion): boolean {
@@ -56,7 +59,7 @@ export function isBunBuiltin(moduleName: string, bunVersion?: BunVersion): boole
 
 /**
  * Gets a list of all native Bun modules.
- * @param bunVersion - Optional. The Bun version to check against. Defaults to the current Bun version if available, otherwise "latest".
+ * @param bunVersion - The Bun version to check against. Defaults to the current Bun version if available and is equal to or greater than 1.0.0, otherwise "latest".
  * @returns An array of module names
  */
 export function getBunModules(bunVersion?: BunVersion): string[] {
@@ -66,7 +69,7 @@ export function getBunModules(bunVersion?: BunVersion): string[] {
 
 /**
  * Gets a list of all Node.js modules implemented in Bun.
- * @param bunVersion - Optional. The Bun version to check against. Defaults to the current Bun version if available, otherwise "latest".
+ * @param bunVersion - The Bun version to check against. Defaults to the current Bun version if available and is equal to or greater than 1.0.0, otherwise "latest".
  * @returns An array of module names
  */
 export function getBunImplementedNodeModules(bunVersion?: BunVersion): string[] {
@@ -76,7 +79,7 @@ export function getBunImplementedNodeModules(bunVersion?: BunVersion): string[] 
 
 /**
  * Gets a list of all Bun builtin modules (both Bun modules and Node.js modules implemented in Bun).
- * @param bunVersion - Optional. The Bun version to check against. Defaults to the current Bun version if available, otherwise "latest".
+ * @param bunVersion - The Bun version to check against. Defaults to the current Bun version if available and is equal to or greater than 1.0.0, otherwise "latest".
  * @returns An array of module names
  */
 export function getBunBuiltinModules(bunVersion?: BunVersion): string[] {
