@@ -42,7 +42,7 @@
     "format:check": "bun --bun oxfmt --check",
     "lint": "bun --bun oxlint",
     "get-bun-blogs": "bun scripts/getBunBlogs.ts",
-    "publish": "bun --bun semantic-release",
+    "publish": "semantic-release",
     "prepare": "bun --bun husky"
   },
   "engines": {
