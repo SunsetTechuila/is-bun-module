@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
 
-import bundledBunModules from "@assets/bun-modules.json";
-import bundledNodeModules from "@assets/implemented-node-modules.json";
+import bundledBunModules from "@src/modules/bun";
+import bundledNodeModules from "@src/modules/node";
 
 import {
   getBunModules,

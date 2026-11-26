@@ -1,10 +1,12 @@
 import { compare, parse, satisfies, type SemVer } from "verkit";
 
-import bunModules from "@assets/bun-modules.json";
-import implementedNodeModules from "@assets/implemented-node-modules.json";
-
-type VersionRange = string | boolean;
-type Modules = Record<string, VersionRange>;
+import {
+  type Modules,
+  type VersionRange,
+  BUN_MODULES,
+  CURRENT_BUN_VERSION,
+  IMPLEMENTED_NODE_MODULES,
+} from "./modules";
 
 type SemVerBaseStringified = `${bigint}.${bigint}.${bigint}`;
 type SemVerStringifiedWithReleaseName = `${SemVerBaseStringified}-${string}`;
@@ -14,18 +16,7 @@ export type BunVersion = SemVerStringified | "latest";
 export const MINIMUM_BUN_VERSION = "1.0.0" satisfies SemVerBaseStringified;
 const MINIMUM_BUN_SEMVER = parse(MINIMUM_BUN_VERSION);
 const LATEST_BUN_SEMVER = parse("999.999.999");
-const CURRENT_BUN_VERSION = globalThis.Bun?.version as string | undefined;
 const CURRENT_BUN_SEMVER = CURRENT_BUN_VERSION ? parse(CURRENT_BUN_VERSION) : LATEST_BUN_SEMVER;
-
-if (CURRENT_BUN_VERSION) {
-  // don't do the same with node modules because `builtinModules` in bun contains even not implemented node modules
-  const { builtinModules } = require("node:module");
-  for (const moduleName of builtinModules) {
-    if (moduleName.startsWith("bun:")) {
-      (bunModules as Modules)[moduleName] ??= `>=${CURRENT_BUN_VERSION}`;
-    }
-  }
-}
 
 /**
  * Checks if the given module name is a native Bun module.
@@ -35,7 +26,7 @@ if (CURRENT_BUN_VERSION) {
  */
 export function isBunModule(moduleName: string, bunVersion?: BunVersion): boolean {
   const normalizedBunVersion = normalizeBunVersion(bunVersion);
-  return checkModule(moduleName, bunModules, normalizedBunVersion);
+  return checkModule(moduleName, BUN_MODULES, normalizedBunVersion);
 }
 
 /**
@@ -46,7 +37,7 @@ export function isBunModule(moduleName: string, bunVersion?: BunVersion): boolea
  */
 export function isBunImplementedNodeModule(moduleName: string, bunVersion?: BunVersion): boolean {
   const normalizedBunVersion = normalizeBunVersion(bunVersion);
-  return checkModule(moduleName, implementedNodeModules, normalizedBunVersion);
+  return checkModule(moduleName, IMPLEMENTED_NODE_MODULES, normalizedBunVersion);
 }
 
 /**
@@ -58,8 +49,8 @@ export function isBunImplementedNodeModule(moduleName: string, bunVersion?: BunV
 export function isBunBuiltin(moduleName: string, bunVersion?: BunVersion): boolean {
   const normalizedBunVersion = normalizeBunVersion(bunVersion);
   return (
-    checkModule(moduleName, bunModules, normalizedBunVersion) ||
-    checkModule(moduleName, implementedNodeModules, normalizedBunVersion)
+    checkModule(moduleName, BUN_MODULES, normalizedBunVersion) ||
+    checkModule(moduleName, IMPLEMENTED_NODE_MODULES, normalizedBunVersion)
   );
 }
 
@@ -70,7 +61,7 @@ export function isBunBuiltin(moduleName: string, bunVersion?: BunVersion): boole
  */
 export function getBunModules(bunVersion?: BunVersion): string[] {
   const normalizedBunVersion = normalizeBunVersion(bunVersion);
-  return getModules(bunModules, normalizedBunVersion);
+  return getModules(BUN_MODULES, normalizedBunVersion);
 }
 
 /**
@@ -80,7 +71,7 @@ export function getBunModules(bunVersion?: BunVersion): string[] {
  */
 export function getBunImplementedNodeModules(bunVersion?: BunVersion): string[] {
   const normalizedBunVersion = normalizeBunVersion(bunVersion);
-  return getModules(implementedNodeModules, normalizedBunVersion);
+  return getModules(IMPLEMENTED_NODE_MODULES, normalizedBunVersion);
 }
 
 /**
@@ -92,24 +83,22 @@ export function getBunBuiltinModules(bunVersion?: BunVersion): string[] {
   const normalizedBunVersion = normalizeBunVersion(bunVersion);
   const result: string[] = [];
 
-  getModules(bunModules, normalizedBunVersion, result);
-  getModules(implementedNodeModules, normalizedBunVersion, result);
+  getModules(BUN_MODULES, normalizedBunVersion, result);
+  getModules(IMPLEMENTED_NODE_MODULES, normalizedBunVersion, result);
 
   return result;
 }
 
 function checkModule(moduleName: unknown, modules: Modules, version: SemVer): boolean {
   if (typeof moduleName !== "string") throw new TypeError("Module name must be a string");
-  if (!Object.hasOwn(modules, moduleName)) return false;
-  return satisfiesVersionRange(version, modules[moduleName]!);
+  const versionRange = modules.get(moduleName);
+  if (versionRange === undefined) return false;
+  return satisfiesVersionRange(version, versionRange);
 }
 
 function getModules(modules: Modules, version: SemVer, result: string[] = []): string[] {
-  for (const moduleName in modules) {
-    if (
-      Object.hasOwn(modules, moduleName) &&
-      satisfiesVersionRange(version, modules[moduleName]!)
-    ) {
+  for (const [moduleName, versionRange] of modules) {
+    if (satisfiesVersionRange(version, versionRange)) {
       result.push(moduleName);
     }
   }
