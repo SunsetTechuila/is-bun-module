@@ -5,7 +5,8 @@ import lt from "semver/functions/lt";
 import bundledBunModules from "@assets/bun-modules.json";
 import implementedNodeModules from "@assets/implemented-node-modules.json";
 
-type Modules = Record<string, string | boolean>;
+type VersionRange = string | boolean;
+type Modules = Record<string, VersionRange>;
 
 type SemVerBaseStringified = `${bigint}.${bigint}.${bigint}`;
 type SemVerStringifiedWithReleaseName = `${SemVerBaseStringified}-${string}`;
@@ -99,10 +100,7 @@ function getModules(modules: Modules, bunVersion?: BunVersion): string[] {
   });
 }
 
-function satisfiesVersionRange(
-  version: SemVerStringified,
-  versionRange: string | boolean,
-): boolean {
+function satisfiesVersionRange(version: SemVerStringified, versionRange: VersionRange): boolean {
   if (typeof versionRange === "boolean") return versionRange;
   return satisfies(version, versionRange);
 }
