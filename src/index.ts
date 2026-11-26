@@ -1,4 +1,4 @@
-import { compare, parse, satisfies, type SemVer } from "verkit";
+import { parse, satisfies, type SemVer } from "verkit";
 
 import {
   type Modules,
@@ -13,8 +13,6 @@ type SemVerStringifiedWithReleaseName = `${SemVerBaseStringified}-${string}`;
 type SemVerStringified = SemVerBaseStringified | SemVerStringifiedWithReleaseName;
 export type BunVersion = SemVerStringified | "latest";
 
-export const MINIMUM_BUN_VERSION = "1.0.0" satisfies SemVerBaseStringified;
-const MINIMUM_BUN_SEMVER = parse(MINIMUM_BUN_VERSION);
 const LATEST_BUN_SEMVER = parse("999.999.999");
 const CURRENT_BUN_SEMVER =
   CURRENT_BUN_VERSION && CURRENT_BUN_VERSION[0] !== "0"
@@ -120,8 +118,8 @@ function normalizeBunVersion(version?: unknown): SemVer {
   if (version === "latest") return LATEST_BUN_SEMVER;
 
   const parsed = parse(version);
-  if (compare(parsed, MINIMUM_BUN_SEMVER) < 0) {
-    throw new RangeError(`Bun version must be at least ${MINIMUM_BUN_VERSION}`);
+  if (parsed.major === 0) {
+    throw new RangeError(`Bun version must be at least 1.0.0`);
   }
 
   return parsed;
