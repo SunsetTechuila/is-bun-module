@@ -1,4 +1,4 @@
-import { SemVer, satisfies } from "semver";
+import { compare, parse, satisfies, type SemVer } from "verkit";
 
 import bunModules from "@assets/bun-modules.json";
 import implementedNodeModules from "@assets/implemented-node-modules.json";
@@ -12,12 +12,10 @@ type SemVerStringified = SemVerBaseStringified | SemVerStringifiedWithReleaseNam
 export type BunVersion = SemVerStringified | "latest";
 
 export const MINIMUM_BUN_VERSION = "1.0.0" satisfies SemVerBaseStringified;
-const MINIMUM_BUN_SEMVER = new SemVer(MINIMUM_BUN_VERSION);
-const LATEST_BUN_SEMVER = new SemVer("999.999.999");
+const MINIMUM_BUN_SEMVER = parse(MINIMUM_BUN_VERSION);
+const LATEST_BUN_SEMVER = parse("999.999.999");
 const CURRENT_BUN_VERSION = globalThis.Bun?.version as string | undefined;
-const CURRENT_BUN_SEMVER = CURRENT_BUN_VERSION
-  ? new SemVer(CURRENT_BUN_VERSION)
-  : LATEST_BUN_SEMVER;
+const CURRENT_BUN_SEMVER = CURRENT_BUN_VERSION ? parse(CURRENT_BUN_VERSION) : LATEST_BUN_SEMVER;
 
 if (CURRENT_BUN_VERSION) {
   // don't do the same with node modules because `builtinModules` in bun contains even not implemented node modules
@@ -129,9 +127,9 @@ function normalizeBunVersion(version?: unknown): SemVer {
   if (typeof version !== "string") throw new TypeError("Bun version must be a string");
   if (version === "latest") return LATEST_BUN_SEMVER;
 
-  const parsed = new SemVer(version);
-  if (parsed.compare(MINIMUM_BUN_SEMVER) < 0) {
-    throw new RangeError(`Bun version must be at least ${MINIMUM_BUN_SEMVER.toString()}`);
+  const parsed = parse(version);
+  if (compare(parsed, MINIMUM_BUN_SEMVER) < 0) {
+    throw new RangeError(`Bun version must be at least ${MINIMUM_BUN_VERSION}`);
   }
 
   return parsed;
