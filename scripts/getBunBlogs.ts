@@ -1,10 +1,10 @@
-const blogPage = await fetch("https://bun.sh/blog");
+const blogPage = await fetch("https://bun.com/blog");
 const blogText = await blogPage.text();
-const blogRefs = blogText.matchAll(/href="(\/blog\/(bun-v1\.\d+(?:\.\d+)?))"/gu);
+const blogRefs = blogText.matchAll(/href="\/blog\/(bun-v1\.\d+(?:\.\d+)?)"/gu);
 const blogs = Array.from(blogRefs).map((match) => {
   return {
-    link: `https://bun.sh${match[1]}`,
-    name: match[2],
+    link: `https://bun.com/blog/${match[1]}.md`,
+    name: match[1],
   };
 });
 
@@ -19,7 +19,7 @@ for (const blog of blogs) {
         return result.text();
       })
       .then((text) => {
-        return Bun.file(`bun-blogs/${blog.name}.html`).write(text);
+        return Bun.file(`bun-blogs/${blog.name}.md`).write(text);
       })
       .catch((error) => {
         console.error(error);
